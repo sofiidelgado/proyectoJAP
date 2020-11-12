@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             <p class="col">`+ article.name +`</p>
             <p class="col" id="unitCost">` + article.currency + ` ` + article.unitCost + `</p>
             
-            <p class="col"><input type="number" class="form-group" min= 0 name="cantidad" value="`+ article.count + `" id="countInput"></input></p>
+            <p class="col"><input type="number" class="form-control" min= 0 name="cantidad" value="`+ article.count + `" id="countInput"></input></p>
             <div class="invalid-feedback">
                     El número de artículos debe ser mayor a 0.
                   </div>
@@ -122,8 +122,6 @@ document.addEventListener("DOMContentLoaded", function(e){
       
 });
 //VALIDACIONES INTENTO NÚMERO MIL
-//document.getElementById("finalizarCompra").disabled = true;
-
 document.getElementById("finalizarCompra").addEventListener("click", function() {
     
     var cant = document.getElementById("countInput").value
@@ -134,21 +132,10 @@ document.getElementById("finalizarCompra").addEventListener("click", function() 
     var exp = document.getElementById("express").checked == false;
     var stan = document.getElementById("estandar").checked == false;
 
-    if (cant < 1) {
-        alert("El carrito está vacío")
-        document.getElementById("finalizarCompra").disabled = true;
-    } 
-    else { document.getElementById("finalizarCompra").disabled = false; };
+    if (cant < 1 || tarj ^ transf ^ efec || pre ^ exp ^ stan) {
+        alert("¡Ha ocurrido un error! verifica que todos los pasos se hayan completado ") }
+        else { alert("¡Su compra ha sido procesada exitosamente!");
+    };
 
-    if (tarj ^ transf ^ efec) {
-        alert("Debe seleccionar un método de pago")
-        document.getElementById("finalizarCompra").disabled = true;
-    } else { document.getElementById("finalizarCompra").disabled = false; };
-
-    if (pre ^ exp ^ stan) {
-        alert("Debe seleccionar un tipo de envío")
-        document.getElementById("finalizarCompra").disabled = true;
-    } //else { document.getElementById("finalizarCompra").disabled = false; };
 });
-
 });
