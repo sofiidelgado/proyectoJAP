@@ -124,68 +124,32 @@ formulario.addEventListener("submit", (e) => {
 	}
 
 })
-
+//FUNCION PARA GUARDAR DATOS PERSONALES
+function guardarCambios() {
+    let datos = {};
+    datos.nombre = document.getElementById("name").value;
+    datos.apellido = document.getElementById("lastName").value;
+    datos.edad = document.getElementById("age").value;
+    datos.email = document.getElementById("email").value;
+    datos.telefono = document.getElementById("telephone").value;
+    console.log(datos);
+    localStorage.setItem("perfil", JSON.stringify(datos));
+}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {
+//MOSTRAR DATOS PERSONALES
+document.addEventListener("DOMContentLoaded", function(e) {
+    if (localStorage.getItem("perfil") != undefined) {
+        let cambios = JSON.parse(localStorage.getItem("perfil"));
 
-//PARA GUARDAR DATOS
-document.getElementById("submitProfile").addEventListener("click", function() {
-var allDatos = [];
+        document.getElementById("name").value = cambios.nombre;
+        document.getElementById("lastName").value = cambios.apellido;
+        document.getElementById("age").value = cambios.edad;
+        document.getElementById("email").value = cambios.email;
+        document.getElementById("telephone").value = cambios.telefono;
+        
 
-    datos = [];
-    datos.push(document.getElementById("name").value);
-    datos.push(document.getElementById("lastName").value);
-    datos.push(document.getElementById("age").value);
-    datos.push(document.getElementById("email").value);
-    datos.push(document.getElementById("telephone").value);
-
-    allDatos.push(datos);
-    elArray = JSON.stringify(allDatos)
-    localStorage.setItem('array', elArray);
-mostrarDatos();
-
-})
-
-//SIN TERMINAR PROBANDO 123
-function mostrarDatos(array){
-x = JSON.parse(localStorage.getItem('array')); 
-    //let htmlContentToAppend = "";
-    for(let i=0; i < x.lenght; i++) {
-        $("#myProfile").append("<form> <input value="+x[i][0]+"></input> </form>")
-
-    /*let xx = x[i];
-    let nom = document.getElementById("name").value;
-    let ape = document.getElementById("lastName").value;
-    let edad = document.getElementById("age").value;
-    let corr = document.getElementById("email").value;
-    let tel = document.getElementById("telephone").value;
-
-    nom = datos.push(document.getElementById("name").value);
-    ape = datos.push(document.getElementById("lastName").value);
-    edad = datos.push(document.getElementById("age").value);
-    corr = datos.push(document.getElementById("email").value);
-    tel = datos.push(document.getElementById("telephone").value);
-    
-    htmlContentToAppend += `
-    
-    <input class="col" value="`+ xx[i][0] + `"></input>
-    <input class="col" value="`+ xx[i][1] + `"></input>
-    <p class="col" value="`+ xx[i][2] + `"></p>
-    <p class="col" value="`+ xx[i][3] + `"></p>
-    <p class="col" value="`+ xx[i][4] + `"></p>
-    `;
-    document.getElementById("datosPerfil").innerHTML = htmlContentToAppend;*/
-    
-    
-
-    } }
-
-
-
-
-
-
+    }
 
 });
