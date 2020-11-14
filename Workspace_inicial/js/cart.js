@@ -134,7 +134,13 @@ document.getElementById("finalizarCompra").addEventListener("click", function() 
 
     if (cant < 1 || tarj ^ transf ^ efec || pre ^ exp ^ stan) {
         alert("¡Ha ocurrido un error! verifica que todos los pasos se hayan completado ") }
-        else { alert("¡Su compra ha sido procesada exitosamente!");
+        else 
+        //{ alert("¡Su compra ha sido procesada exitosamente!");
+        { Swal.fire({
+            title: "¡Su compra ha sido procesada con éxito!",
+            icon: "success"
+        }); 
+    
     };
 
 });
