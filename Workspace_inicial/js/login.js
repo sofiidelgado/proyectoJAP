@@ -6,16 +6,11 @@ const expresiones = {
 const datos = {
         correo: false,
         password: false };
+
 function redireccionar() { location.href="pagina-principal.html"
 };
 
-//GUARDO CORREO EN EL LOCALSTORAGE
-/*document.getElementById("boton").addEventListener("click",function(e){
-if (document.getElementById("correo").value.length != 0 && document.getElementById("contraseña").value.length != 0 ) {
-document.getElementById("correo").value;
-localStorage.setItem('UserLogged', document.getElementById("correo").value);
-return location.href="pagina-principal.html"; });*/
-
+//Acá hice validaciones en los campos de correo y contraseña usando expresiones regulares y agregando o removiendo clases.
 const validarDatos = (e) => { 
     switch (e.target.name) {
         case "email": 
@@ -50,13 +45,13 @@ const validarDatos = (e) => {
         break;
     }
 }
-
+//Eventos para validar en los inputs
 inputs.forEach((input) => {
     input.addEventListener("keyup", validarDatos);
     input.addEventListener("blur", validarDatos);
 });
 
-
+//si todo está bien, el botón nos va a redirigir a la Página principal, de lo contrario nos muestra un mensaje de error
 document.getElementById("boton").addEventListener("click", function(){
 
     if (datos.correo && datos.password) { 
@@ -72,5 +67,5 @@ document.getElementById("boton").addEventListener("click", function(){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-/*document.addEventListener("DOMContentLoaded", function(e){ 
-});*/
+document.addEventListener("DOMContentLoaded", function(e){ 
+});

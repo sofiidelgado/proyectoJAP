@@ -39,13 +39,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             
             `;
             document.getElementById("cart").innerHTML = htmlContentToAppend;
-        //document.getElementById("totalCost").innerHTML += article.unitCost * article.count;
         document.getElementById("subtotal-to-show").innerHTML += article.unitCost * article.count;
 
         }
         
     };
-
+//Calculo el subtotal a pagar
         function showSubtotal(){
             for(let i=0; i < articulo.length; i++){
                 let article = articulo[i];
@@ -57,25 +56,20 @@ document.addEventListener("DOMContentLoaded", function(e){
             subtotalHTML.innerHTML = article.currency + " " + subtotalToShow ;   
         };
         };
-
+//Calculo el total y el subtotal a pagar
         function SubtotalYTotal(){
             for(let i=0; i < articulo.length; i++){
                 
             let article = articulo[i];
-            //let envio = 0;
             let cantidad =  document.getElementById("countInput").value;
             let unitProductCostHTML = document.getElementById("subtotal-to-show");
-            //let totalCostHTML = document.getElementById("totalCost");
-        
             let unitCostToShow = Math.round(article.unitCost * cantidad);
-            //let totalCostToShow = envio + (Math.round(article.unitCost * cantidad));
-        
+            
             unitProductCostHTML.innerHTML = article.currency + " " + unitCostToShow;
            
-            //totalCostHTML.innerHTML = article.currency + " " + totalCostToShow;
         }; 
     };
-//Costo del envío
+//Calculo costo del envío
     function calcularEnvio() {
         for(let i=0; i < articulo.length; i++){
             let article = articulo[i];
@@ -94,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function(e){
          totalCostHTML.innerHTML = article.currency + " " + Math.round(unitCostToShow + costoEnvio);
         };
         };
+
     //Eventos change para subtotal
         document.getElementById("countInput").addEventListener("change", function(){
             showSubtotal();
@@ -121,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
       
 });
-//VALIDACIONES INTENTO NÚMERO MIL
+//VALIDACIONES 
 document.getElementById("finalizarCompra").addEventListener("click", function() {
     
     var cant = document.getElementById("countInput").value
@@ -135,7 +130,6 @@ document.getElementById("finalizarCompra").addEventListener("click", function() 
     if (cant < 1 || tarj ^ transf ^ efec || pre ^ exp ^ stan) {
         alert("¡Ha ocurrido un error! verifica que todos los pasos se hayan completado ") }
         else 
-        //{ alert("¡Su compra ha sido procesada exitosamente!");
         { Swal.fire({
             title: "¡Su compra ha sido procesada con éxito!",
             icon: "success"

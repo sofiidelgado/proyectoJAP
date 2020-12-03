@@ -4,7 +4,7 @@ var commentArray = [];
 var relatedProducts = [1,3];
 
 
-
+//Carrusel para mostrar las imágenes del producto
 function showImagesGallery(array){
 
 for(let i = 0; i < array.length; i++){
@@ -48,10 +48,10 @@ for(let i = 0; i < array.length; i++){
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
-    }
-}
+    }};
 
-function showProductsList() {
+//Función para mostrar los productos relacionados
+function showRelatedProductsList() {
 
     let htmlContentToAppend = "";
     console.log(currentProductsArray.length)
@@ -80,8 +80,9 @@ function showProductsList() {
             `
         }
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
-    }
-} 
+    }};
+
+//Función para mostrar los comentarios sobre el producto
 function showCommentsList(){
 
     let htmlContentToAppend = "";
@@ -115,13 +116,12 @@ function showCommentsList(){
         }
 
         document.getElementById("comments").innerHTML = htmlContentToAppend;
-    }
-}
+    }};
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    //Producto y productos relacionados
+    //Productos
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
@@ -138,35 +138,33 @@ document.addEventListener("DOMContentLoaded", function(e){
             productSoldCountHTML.innerHTML = product.soldCount;
             productCriteriaHTML.innerHTML = product.category;
             productCostHTML.innerHTML = product.currency + " " + product.cost
-
-    
-
+            
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-        }
-          //Comentarios y Estrellitas
+        };
+    //Muestro comentarios y Estrellitas
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            commentArray = resultObj.data;
-
-            
+            commentArray = resultObj.data;            
 
             showCommentsList();
         }
     });
 
+//Muestro los productos relacionados
 getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
 
         currentProductsArray = resultObj.data;
             
-            showProductsList();
+            showRelatedProductsList();
            
         }
     });
-    document.getElementById("relatedProducts");
-    showProductsList() 
+
+document.getElementById("relatedProducts");
+    showRelatedProductsList() 
 }); 
     });
 
